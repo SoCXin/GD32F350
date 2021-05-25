@@ -1,0 +1,77 @@
+{
+    "type":"MCU",
+    "name":"GD32F350",
+    "series":["GD32F350"],
+    "peripheral": ["ADC","UART","I2C","SPI","PWM"],
+    "package":["UFBGA100","LQFP100","LQFP64","WLCSP49","UFQFN48"],
+    "manufacturer": {
+        "vendor":"ST",
+        "homepage":"https://my.st.com/content/my_st_com/zh/products/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus/stm32-high-performance-mcus/stm32f4-series/GD32F350.html"
+    },
+    "url":"http://www.SoC.xin/GD32F350",
+    "repo":"https://github.com/SoCXin/GD32F350",
+    "version":"1.0.0",
+    "UID": {
+        "bits": 96,
+        "base": "0x1FFF7A10"
+    },
+    "Core": {
+        "num": 1,
+        "architecture":"Cortex-M4",
+        "Freq":[64,72]
+    },
+    "GD32F350": {
+        "SRAM":20000,
+        "Flash":64000,
+        "package":"QFN20",
+        "peripheral": ["ADC","TIM","PWM"],
+        "GPIO":18,
+        "price":6.8
+    },
+    "UART": {
+        "mark": ["UART1","UART2"],
+        "BIT":[5,6,7,8,9],
+        "ISO7816":true,
+        "LIN":true,
+        "BPS": [48,3000000]
+    },
+    "ADC": {
+        "num": 1,
+        "channel": 8,
+        "resolution": 12,
+        "rate": 1024
+    },
+    "TIM": {
+        "mark": ["TIM1","TIM3","TIM14"],
+        "TIM1":[16,4,0],
+        "TIM3":[16,3,0],
+        "TIM14":[16,1,0],
+        "systick": 24,
+        "WWDG": true,
+        "IWDG": true
+    },
+    "CLK": {
+        "HSE": [1000,16000],
+        "HSI": [16000],
+        "LSI": [32],
+        "PLL": [16000,16000],
+        "DIV": [1,128],
+        "accuracy": 0.02
+    },
+    "PWR": {
+        "VDD": [2000,3600],
+        "PVD": [1820,1810],
+        "IDD": [2.21,14.31],
+        "Imax": 120
+    },
+    "EMC": {
+        "EFT": 2000,
+        "ESD": 4000
+    },
+    "upload": {
+        "ISP": true,
+        "IAP": true,
+        "SWD": true,
+        "speed": 115200
+    }
+}
