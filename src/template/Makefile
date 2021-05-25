@@ -53,22 +53,28 @@ startup_gd32f3x0.s
 ######################################
 # firmware library
 ######################################
-PERIFLIB_SOURCES = 
+PERIFLIB_SOURCES =
 
 
 #######################################
 # binaries
 #######################################
-BINPATH = E:/gcc-arm-none-eabi-7-2018-q2-update-win32/bin
+# BINPATH = E:/gcc-arm-none-eabi-7-2018-q2-update-win32/bin
+# PREFIX = arm-none-eabi-
+# CC = $(BINPATH)/$(PREFIX)gcc
+# AS = $(BINPATH)/$(PREFIX)gcc -x assembler-with-cpp
+# CP = $(BINPATH)/$(PREFIX)objcopy
+# AR = $(BINPATH)/$(PREFIX)ar
+# SZ = $(BINPATH)/$(PREFIX)size
 PREFIX = arm-none-eabi-
-CC = $(BINPATH)/$(PREFIX)gcc
-AS = $(BINPATH)/$(PREFIX)gcc -x assembler-with-cpp
-CP = $(BINPATH)/$(PREFIX)objcopy
-AR = $(BINPATH)/$(PREFIX)ar
-SZ = $(BINPATH)/$(PREFIX)size
+CC = $(PREFIX)gcc
+AS = $(PREFIX)gcc -x assembler-with-cpp
+CP = $(PREFIX)objcopy
+AR = $(PREFIX)ar
+SZ = $(PREFIX)size
 HEX = $(CP) -O ihex
 BIN = $(CP) -O binary -S
- 
+
 #######################################
 # CFLAGS
 #######################################
@@ -87,7 +93,7 @@ MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 
 # macros for gcc
 # AS defines
-AS_DEFS = 
+AS_DEFS =
 
 # C defines
 C_DEFS =  \
@@ -98,7 +104,7 @@ C_DEFS =  \
 
 
 # AS includes
-AS_INCLUDES = 
+AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
@@ -152,7 +158,7 @@ vpath %.c $(sort $(dir $(C_SOURCES)))
 OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
 
-$(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
+$(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
@@ -164,19 +170,19 @@ $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@
-	
+
 $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
-	$(BIN) $< $@	
-	
+	$(BIN) $< $@
+
 $(BUILD_DIR):
-	mkdir $@		
+	mkdir $@
 
 #######################################
 # clean up
 #######################################
 clean:
 	-rm -fR .dep $(BUILD_DIR)
-  
+
 #######################################
 # dependencies
 #######################################
